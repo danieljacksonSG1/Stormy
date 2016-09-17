@@ -46,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
+    public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
+
     private Forecast mForecast;
 
 
@@ -83,16 +85,16 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-
         getForcast();
-
-
-
-
 
     }
 
-
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getForcast();
+    }
 
     private void getForcast() {
 
@@ -217,7 +219,7 @@ public class MainActivity extends ActionBarActivity {
 
         Day[] days = new Day[data.length()];
 
-        for (int i = 0; i < daily.length(); i++)
+        for (int i = 0; i < data.length(); i++)
         {
             JSONObject jsonDay = data.getJSONObject(i);
             Day day = new Day();
@@ -324,5 +326,12 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    @OnClick (R.id.hourlyButton)
+    public void startHourlyActivity(View view)
+    {
+        Intent intent = new Intent(this, HourlyForecastActivity.class);
+        intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
+        startActivity(intent);
+    }
 
 }

@@ -11,5 +11,6 @@
     <string name="count">counter</string>
     <string name="title_activity_daily_forecast">DailyForecastActivity</string>
     <string name="no_data">There is no data to display</string>
+    <string name="title_activity_hourly_forecast">HourlyForecastActivity</string>
 
 </resources>
